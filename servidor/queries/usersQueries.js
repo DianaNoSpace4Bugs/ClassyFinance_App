@@ -6,7 +6,10 @@ const query = {
     updateUser:
     `UPDATE users
     SET name = $1
-    WHERE name = $2;`
+    WHERE name = $2;`,
+    createUser:
+    `INSERT INTO users(user_id, name, email, password, money_limit)
+    VALUES ($1,$2,$3,$4);`
 };
 
 module.exports = query;

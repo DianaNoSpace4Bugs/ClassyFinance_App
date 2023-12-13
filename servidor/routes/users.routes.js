@@ -4,6 +4,7 @@ const usersController = require("../controllers/users.controller");
 const usersRouter = express.Router();
 
 usersRouter.get('/users', usersController.getUserById);
+usersRouter.post('/user', usersController.createUser);
 usersRouter.put('/user', usersController.updateUsersData);
 
 

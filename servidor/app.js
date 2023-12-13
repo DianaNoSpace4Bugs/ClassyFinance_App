@@ -7,15 +7,17 @@ require('dotenv').config()
 const { Pool } = require('pg');
 //Rutas
 const usersRoutes = require("./routes/users.routes");
-// const expensesRoutes = require("./routes/expenses.routes");
+const expensesRoutes = require("./routes/expenses.routes");
 const categoriesRoutes = require("./routes/categories.routes");
-// const incomesRoutes = require("./routes/incomes.routes");
+const incomesRoutes = require("./routes/incomes.routes");
 
 
 app.use(express.json());
 
 app.use('/api', usersRoutes);
 app.use('/api', categoriesRoutes);
+app.use('/api', incomesRoutes);
+app.use('/api', expensesRoutes);
 
 
 // Configuración de la conexión a PostgreSQL

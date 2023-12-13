@@ -29,5 +29,6 @@ CREATE TABLE incomes (
   income_id SERIAL PRIMARY KEY,
   quantity MONEY,
   description TEXT,
-  user_id INTEGER REFERENCES users(user_id)
+  user_id INTEGER REFERENCES users(user_id),
+  is_monthly BOOLEAN DEFAULT false
 );

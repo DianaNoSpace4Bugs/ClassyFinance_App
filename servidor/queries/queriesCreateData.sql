@@ -40,12 +40,13 @@ VALUES
 
 
 -- Generar tabla de ingresos:
-INSERT INTO incomes (income_id, quantity, description, user_id)
+DELETE FROM incomes;
+INSERT INTO incomes (income_id, quantity, description, user_id, is_monthly)
 VALUES
-  (1, 1850.00, 'Sueldo mensual', 1),
-  (2, 965.38, 'Pensión', 2),
-  (3, 1200.40, 'Sueldo trabajo', 3),
-  (4, 200.00, 'Paga mamá y papá', 4),
-  (5, 2200.40, 'Sueldo y extras', 5);
+  (1, 1850.00, 'Sueldo mensual', 1, true),
+  (2, 965.38, 'Pensión', 2, true),
+  (3, 1200.40, 'Sueldo trabajo', 3, true),
+  (4, 200.00, 'Paga mamá y papá', 4, false),
+  (5, 2200.40, 'Pagas extras', 5, false);
 
 

@@ -26,7 +26,17 @@ const updateUsersData = async (req, res) => {
     });
 }
 
+const createUser = async (req, res) => {
+    const newUser = req.body; // {name,surname,email,image}
+    const response = await modelsUsers.createUser(newUser);//esto accede a authors.models y llama a esa funcion allí
+    res.status(201).json({
+        "items_created": response,
+        data: newUser
+    });
+}
+
 module.exports = {
     getUserById,
-    updateUsersData
+    updateUsersData,
+    createUser
 }

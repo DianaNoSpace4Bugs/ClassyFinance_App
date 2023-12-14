@@ -1,7 +1,7 @@
 -- Crear tabla users:
 CREATE TABLE users (
   user_id SERIAL PRIMARY KEY,
-  name TEXT,
+  username TEXT,
   email TEXT,
   password TEXT,
   money_limit MONEY
@@ -14,8 +14,10 @@ CREATE TABLE expenses (
   description TEXT,
   date DATE,
   is_monthly BOOLEAN DEFAULT false,
-  user_id INTEGER REFERENCES users(user_id),
-  category_id INTEGER REFERENCES categories(category_id)
+  user_id INTEGER,
+  category_id INTEGER,
+  CONSTRAINT fk_user FOREIGN KEY(user_id) REFERENCES users(user_id),
+  CONSTRAINT fk_category FOREIGN KEY(category_id) REFERENCES categories(category_id),
 );
 
 -- Crear tabla categories:
@@ -29,6 +31,7 @@ CREATE TABLE incomes (
   income_id SERIAL PRIMARY KEY,
   quantity MONEY,
   description TEXT,
-  user_id INTEGER REFERENCES users(user_id),
-  is_monthly BOOLEAN DEFAULT false
+  is_monthly BOOLEAN DEFAULT false,
+  user_id INTEGER,
+  CONSTRAINT fk_user FOREIGN KEY(user_id) REFERENCES users(user_id)
 );

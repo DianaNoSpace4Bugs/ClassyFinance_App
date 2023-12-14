@@ -3,11 +3,22 @@ const pool = require('../config/db_postgresql')//accede al fichero este que es e
 
 
 // GET
-const getAllExpenses = async () => {
+const getAllExpenses = async (userId, categoryId, startDate, endDate, offset, limit) => {
     let client, result;
+    let startDateWithoutTime = null
+    if (startDate){
+        const startDateSplitted = startDate.split("T");
+        startDateWithoutTime = startDateSplitted[0];
+    }
+    let endDateWithoutTime = null
+    if (endDate){
+        const endDateSplitted = endDate.split("T");
+        endDateWithoutTime = endDateSplitted[0];
+    }
+    console.log([userId, categoryId, startDate, endDate, offset, limit]);
     try {
         client = await pool.connect(); // Espera a abrir conexion a bbdd
-        const data = await client.query(queries.getAllExpenses)
+        const data = await client.query(queries.getAllExpenses, [userId, categoryId, startDateWithoutTime ?? '', endDateWithoutTime ?? '', offset, limit])
         result = data.rows
     } catch (err) {
         console.log(err);
@@ -18,8 +29,8 @@ const getAllExpenses = async () => {
     return result
 }
 
-const createExpense = async (infoExpense) => {
-    const { expense_id, quantity, description, date, is_monthly } = infoExpense
+const createExpense = async (infoExpense, email, category) => {
+    const { expense_id, quantity, description, date, is_monthly} = infoExpense
     const fechaSeparada = date.split("T");
     const parteIzquierda = fechaSeparada[0];
 
@@ -29,7 +40,7 @@ const createExpense = async (infoExpense) => {
     let client, result;
     try {
         client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(queries.createExpense, [expense_id, quantity, description, parteIzquierda, is_monthly])
+        const data = await client.query(queries.createExpense, [expense_id, quantity, description, parteIzquierda, is_monthly, email, category])
         result = data.rowCount
     } catch (err) {
         console.log(err);
@@ -62,3 +73,13 @@ module.exports = {
     deleteExpenseById
 }
 
+// let newExpense = {
+//     "expense_id": 16,
+//     "quantity": "$11111.45",
+//     "description": "Pago a papá",
+//     "date": "2022-11-15T23:00:00.000Z",
+//     "is_monthly": false
+//   }
+
+// createExpense(newExpense,"mariadiana1999@example.com", "bills")
+//     .then(data => console.log(data))

@@ -1,5 +1,6 @@
 const queries = require("../queries/incomesQueries")
-const pool = require('../config/db_postgresql')//accede al fichero este que es el que accede al .env donde está la info
+const pool = require('../config/db_postgresql');//accede al fichero este que es el que accede al .env donde está la info
+const { NUMBER } = require("sequelize");
 
 
 // GET
@@ -34,12 +35,13 @@ const updateIncome = async (infoIncome) => {
     return result
 }
 
-const createIncome = async (infoIncome) => {
+const createIncome = async (infoIncome, email) => {
     const {income_id, quantity, description, is_monthly} = infoIncome
+
     let client, result;
     try {
         client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(queries.createIncome,[income_id, quantity, description, is_monthly])
+        const data = await client.query(queries.createIncome,[income_id, quantity, description, is_monthly, email])
         result = data.rowCount
     } catch (err) {
         console.log(err);
@@ -72,4 +74,17 @@ module.exports = {
     createIncome,
     deleteIncomeById
 }
+
+
+
+// let newIncome = {
+//     "income_id":6,
+//     "quantity": "$50.00",
+//     "description": "Dinero de la abuela",
+//     "is_monthly": false,
+//   }
+
+// createIncome(newIncome,"mariadiana1999@example.com")
+//     .then(data => console.log(data))
+
 

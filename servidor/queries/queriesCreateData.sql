@@ -1,6 +1,6 @@
 -- Generar tabla de usuarios:
 DELETE FROM users;
-INSERT INTO users (user_id, "name", email, "password", money_limit) VALUES
+INSERT INTO users (user_id, username, email, "password", money_limit) VALUES
   (1, 'MariaDiana1999', 'mariadiana1999@example.com', 'contraseña123', 1000.50),
   (2, 'PaulMira', 'paulmira@example.com', 'password456', 1500.00),
   (3, 'AnaAnita', 'ananita@example.com', 'clave789', 800.80),

@@ -9,6 +9,7 @@ const getAllIncomes = async (req, res) => {
 
 const createIncome = async (req, res) => {
     const newIncome = req.body; // {name,surname,email,image}
+    console.log(req.body);
     const response = await modelsIncomes.createIncome(newIncome);//esto accede a authors.models y llama a esa funcion allí
     res.status(201).json({
         "items_created": response,

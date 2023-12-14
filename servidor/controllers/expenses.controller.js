@@ -1,8 +1,15 @@
 const modelsExpenses = require('../models/modelsExpenses'); // Importar el modelo de la BBDD
 
 const getAllExpenses = async (req, res) => {
-
-    let expenses = await modelsExpenses.getAllExpenses();
+    const {
+        userId = null,
+        categoryId = null,
+        startDate = null,
+        endDate = null,
+        offset = null,
+        limit = null
+    } = req.query ?? {};
+    let expenses = await modelsExpenses.getAllExpenses(userId, categoryId, startDate, endDate, offset, limit);
     res.status(200).json(expenses);
 
 }

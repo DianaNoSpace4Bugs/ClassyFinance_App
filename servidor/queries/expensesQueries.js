@@ -11,8 +11,8 @@ const query = {
     OFFSET $5
     LIMIT $6`,
     createExpense:
-    `INSERT INTO expenses(expense_id, quantity, description, date, is_monthly, user_id, category_id)
-    VALUES ($1,$2,$3,$4,$5,(SELECT user_id FROM users WHERE email=$6),(SELECT category_id FROM categories WHERE name=$7))`,
+    `INSERT INTO expenses(quantity, description, date, is_monthly, user_id, category_id)
+    VALUES ($1,$2,$3,$4,(SELECT user_id FROM users WHERE email=$5),$6)`,
     deleteExpenseById:
     `DELETE FROM expense
     WHERE expense_id = $1`

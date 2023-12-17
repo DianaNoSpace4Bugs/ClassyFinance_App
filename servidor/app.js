@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const cors = require('cors')
 const cowsay = require('cowsay');
 require('dotenv').config()
 // console.log(process.env) //luego quitar
@@ -12,6 +13,8 @@ const categoriesRoutes = require("./routes/categories.routes");
 const incomesRoutes = require("./routes/incomes.routes");
 
 
+app.use(cors())
+app.options('*', cors())
 app.use(express.json());
 
 app.use('/api', usersRoutes);

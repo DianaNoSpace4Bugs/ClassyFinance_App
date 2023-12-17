@@ -30,7 +30,7 @@ const getAllExpenses = async (userId, categoryId, startDate, endDate, offset, li
 }
 
 const createExpense = async (infoExpense, email, category) => {
-    const { expense_id, quantity, description, date, is_monthly} = infoExpense
+    const {quantity, description, date, is_monthly} = infoExpense
     const fechaSeparada = date.split("T");
     const parteIzquierda = fechaSeparada[0];
 
@@ -40,7 +40,7 @@ const createExpense = async (infoExpense, email, category) => {
     let client, result;
     try {
         client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(queries.createExpense, [expense_id, quantity, description, parteIzquierda, is_monthly, email, category])
+        const data = await client.query(queries.createExpense, [quantity, description, parteIzquierda, is_monthly, email, category])
         result = data.rowCount
     } catch (err) {
         console.log(err);

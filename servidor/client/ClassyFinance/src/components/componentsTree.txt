@@ -1,0 +1,12 @@
+App
+|-- Header
+|-- Main
+|   |-- Home
+|   |   |-- InitialForm
+|   |-- CategoriesList
+|   |   |-- CategoriesCard
+|   |-- ExpensesForm
+|   |-- Statistics
+|   |-- UserProfile
+|-- Footer
+|   |-- Nav

@@ -2,21 +2,35 @@ const modelsExpenses = require('../models/modelsExpenses'); // Importar el model
 
 const getAllExpenses = async (req, res) => {
     const {
-        userId = null,
+        userId = 1, // usamos 1 por defecto hasta que haya autenticación
         categoryId = null,
         startDate = null,
         endDate = null,
         offset = null,
         limit = null
     } = req.query ?? {};
-    let expenses = await modelsExpenses.getAllExpenses(userId, categoryId, startDate, endDate, offset, limit);
-    res.status(200).json(expenses);
+    try{
+        let expenses = await modelsExpenses.getAllExpenses(userId, categoryId, startDate, endDate, offset, limit);
+        res.status(200).json(expenses);
+    } catch(error) {
+        res.status(500).json({
+            statusCode: 500,
+            errorMessage: "An unexpected error has ocurred."
+        });
+    }
 
 }
 
 const createExpense = async (req, res) => {
     const newExpense = req.body;
-    const response = await modelsExpenses.createExpense(newExpense);
+    if (!newExpense.quantity || !newExpense.category){
+        res.status(400).json({
+            statusCode: 400,
+            errorMessage: "Quantity and category fields are required."
+        });
+    }
+    // TODO: el email todavía no lo pasamos hasta que no haya autenticación. Usamos uno por defecto de momento.
+    const response = await modelsExpenses.createExpense(newExpense, newExpense.email ?? "mariadiana1999@example.com", newExpense.category);
     res.status(201).json({
         "items_created": response,
         data: newExpense

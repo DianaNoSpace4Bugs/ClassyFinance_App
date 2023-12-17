@@ -1,21 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-
-const CategoriesCard = () => {
-  // const arrayImagenesCategorias = [
-  //   "/public/assets/categories/bills",
-  //   "/public/assets/categories/transport",
-  //   "/public/assets/categories/entertainment",
-  //   "/public/assets/categories/shopping",
-  //   "/public/assets/categories/grocery"
-  // ]
-  
+const CategoriesCard = (props) => {
   return (
     <section>
-      <h1>HoliHoliii</h1>
-       {/* <h3>{name}</h3>
-       <img src="/public/assets/categories/bills" alt="imagen" /> */}
-   </section>
+      <img src={`/public/assets/categories/${props.name}.png`} alt={`Imagen de la categoría ${props.name}`} />
+      <h3>{props.name}</h3>
+    </section>
   );
 };
 

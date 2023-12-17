@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createExpense } from '../../services/expensesServices';
+import { getCategories } from '../../services/categoriesServices';
 
 const ExpensesForm = () => {
+
+  const [categories, setCategories] = useState([]);
   const [formularioExpense, setFormularioExpense] = useState({
     quantity: '',
     description: '',
@@ -9,9 +12,9 @@ const ExpensesForm = () => {
     is_monthly: false,
     user_id: '',
     category: '',
-    
+
   })
- 
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('event.target: ', event.target)
@@ -25,10 +28,18 @@ const ExpensesForm = () => {
     setFormularioExpense(infoExpense);
     console.log('Sending infoExpense: ', infoExpense)
     createExpense(infoExpense)
-      .then(data => console.log("Expense register (data): ", data))
+      .then(data => console.log("Expense (data): ", data))
       .catch(error => alert(error));
     console.log('Formulario enviado!');
   }
+
+  useEffect(() => {
+    getCategories()
+      .then((data) => {
+        setCategories(data);
+      })
+      .catch((error) => alert(error));
+  }, [])
 
   return (
     <>
@@ -51,12 +62,13 @@ const ExpensesForm = () => {
         <fieldset>
           <label htmlFor="category">Category</label>
           <br />
-          <select name="category" multiple>
-            <option value="category1">category1</option>
-            <option value="category2">category2</option>
-            <option value="category3">category3</option>
-            <option value="category4">category4</option>
-            <option value="category5">category5</option>
+          <select id="category">
+            <option value="" disabled>Select an option</option>
+            {categories.map((option) => (
+              <option key={option.category_id} value={option.category_id}>
+                {option.name}
+              </option>
+            ))}
           </select>
         </fieldset>
         <br />

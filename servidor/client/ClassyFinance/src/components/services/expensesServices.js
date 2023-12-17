@@ -14,4 +14,31 @@ async function createExpense(expenseData) {
     });
 }
 
-export { createExpense }
+async function getExpenses(filter = {}) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const {
+                userId = null,
+                categoryId = null,
+                startDate = null,
+                endDate = null,
+                offset = null,
+                limit = null
+            } = filter;
+
+            let url = `http://localhost:3000/api/expenses?`;
+            // TODO: añadir las que faltan según me haga falta.
+            if (categoryId) url += `categoryId=${categoryId}`;
+            
+            // Petición HTTP
+            const response = await axios.get(url);
+            const json = response;
+            resolve(json.data);
+        } catch (error) {
+            console.error("Ha ocurrido un error al obtener los gastos: ", error)
+            reject(error.response.data.errorMessage);
+        }
+    });
+}
+
+export { createExpense, getExpenses }

@@ -41,4 +41,19 @@ async function getExpenses(filter = {}) {
     });
 }
 
-export { createExpense, getExpenses }
+async function deleteExpense(id) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            // Petición HTTP
+            const body = {"id": id};
+            const response = await axios.delete(`http://localhost:3000/api/expense?id=${id}`, body);
+            const json = response;
+            resolve(json.data.data);
+        } catch (error) {
+            console.error("Ha ocurrido un error al borrar el gasto: ", error)
+            reject(error.response.data.errorMessage);
+        }
+    });
+}
+
+export { createExpense, getExpenses, deleteExpense }

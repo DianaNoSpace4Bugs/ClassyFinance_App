@@ -14,8 +14,7 @@ const query = {
     `INSERT INTO expenses(quantity, description, date, is_monthly, user_id, category_id)
     VALUES ($1,$2,$3,$4,(SELECT user_id FROM users WHERE email=$5),$6)`,
     deleteExpenseById:
-    `DELETE FROM expense
-    WHERE expense_id = $1`
+    `DELETE FROM expenses WHERE expense_id = $1`
 };
 
 module.exports = query;

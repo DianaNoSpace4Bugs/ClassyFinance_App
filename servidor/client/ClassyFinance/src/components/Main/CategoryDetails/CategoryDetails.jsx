@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getCategoryById } from "../../services/categoriesServices";
-import { getExpenses } from "../../services/expensesServices";
+import { getExpenses, deleteExpense } from "../../services/expensesServices";
 
 const CategoryDetails = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -21,11 +21,11 @@ const CategoryDetails = () => {
         setCategoryData(data[0]);
       })
       .catch(error => alert(error))
-      // Obtenemos los gastos por el id de la categoría
-      const filter = {
-        categoryId: getCategoryId()
-      };
-      getExpenses(filter)
+    // Obtenemos los gastos por el id de la categoría
+    const filter = {
+      categoryId: getCategoryId()
+    };
+    getExpenses(filter)
       .then(data => {
         console.log("getExpenses: ", data);
         setExpensesList(data);
@@ -33,22 +33,40 @@ const CategoryDetails = () => {
       .catch(error => alert(error))
   }, [])
 
+  const handleClick = (event) => {
+    console.log(event.target.id);
+    const isConfirmed = confirm("Are you sure of deleting this expense?")
+    if (isConfirmed){
+      deleteExpense(event.target.id)
+      .then(data => {
+        // alert("This expense has been deleted successfully")
+        let remainingExpenses = expensesList.filter(expense => Number(expense.expense_id) !== Number(data));
+        setExpensesList(remainingExpenses);
+      })
+      .catch(error => alert(error))
+    }
+  }
+
   return (
     <section>
-      <div>
+      <article>
+        <img src={`/public/assets/categories/${categoryData?.name}.png`}
+          alt={`Imagen de la categoría ${categoryData?.name}`} />
         <h1>
           {categoryData?.name?.toUpperCase()}
         </h1>
-        <img src={`/public/assets/categories/${categoryData?.name}.png`}
-          alt={`Imagen de la categoría ${categoryData?.name}`} />
-      </div>
+      </article>
       <ul>
         {/* TODO: añadir el resto de datos que me faltan */}
         {expensesList.length == 0 ? 'No hay ningún gasto.' : expensesList.map(expense => {
           return (
-            <p key={expense.expense_id}>
-              {expense.quantity}
-            </p>);
+            <article key={expense.expense_id}>
+              <p>{expense.quantity}</p>
+              <p>{expense.description}</p>
+              <button onClick={handleClick}>
+                <img id={expense.expense_id} src="/public/assets/delete.png" alt="delete imagen" />
+              </button>
+            </article>);
         })}
       </ul>
     </section>

@@ -9,10 +9,10 @@ const getAllExpenses = async (req, res) => {
         offset = null,
         limit = null
     } = req.query ?? {};
-    try{
+    try {
         let expenses = await modelsExpenses.getAllExpenses(userId, categoryId, startDate, endDate, offset, limit);
         res.status(200).json(expenses);
-    } catch(error) {
+    } catch (error) {
         res.status(500).json({
             statusCode: 500,
             errorMessage: "An unexpected error has ocurred."
@@ -23,7 +23,7 @@ const getAllExpenses = async (req, res) => {
 
 const createExpense = async (req, res) => {
     const newExpense = req.body;
-    if (!newExpense.quantity || !newExpense.category){
+    if (!newExpense.quantity || !newExpense.category) {
         res.status(400).json({
             statusCode: 400,
             errorMessage: "Quantity and category fields are required."
@@ -39,12 +39,20 @@ const createExpense = async (req, res) => {
 
 
 const deleteExpenseById = async (req, res) => {
-    const deleteExpenseById = req.body;
-    const response = await modelsExpenses.deleteExpenseById(deleteExpenseById);
-    res.status(201).json({
-        "items_deleted": response,
-        data: deleteExpenseById
-    });
+    const { id } = req.query;
+    console.log('body delete expense id: ', id);
+    try {
+        const response = await modelsExpenses.deleteExpenseById(id);
+        res.status(201).json({
+            "items_deleted": response,
+            data: id
+        });
+    } catch (error) {
+        res.status(500).json({
+            statusCode: 500,
+            errorMessage: "An unexpected error has ocurred."
+        });
+    }
 }
 
 

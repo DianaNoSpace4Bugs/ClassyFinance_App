@@ -51,8 +51,7 @@ const createExpense = async (infoExpense, email, category) => {
     return result
 }
 
-const deleteExpenseById = async (infoExpense) => {
-    const { id } = infoExpense;
+const deleteExpenseById = async (id) => {
     let client, result;
     try {
         client = await pool.connect(); // Espera a abrir conexion

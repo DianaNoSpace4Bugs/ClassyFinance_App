@@ -14,7 +14,7 @@ const InitialForm = () => {
     category4: '',
     category5: ''
   })
-
+ 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('event.target: ', event.target)

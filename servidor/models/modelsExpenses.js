@@ -5,16 +5,16 @@ const pool = require('../config/db_postgresql')//accede al fichero este que es e
 // GET
 const getAllExpenses = async (userId, categoryId, startDate, endDate, offset, limit) => {
     let client, result;
-    let startDateWithoutTime = null
-    if (startDate){
-        const startDateSplitted = startDate.split("T");
-        startDateWithoutTime = startDateSplitted[0];
-    }
-    let endDateWithoutTime = null
-    if (endDate){
-        const endDateSplitted = endDate.split("T");
-        endDateWithoutTime = endDateSplitted[0];
-    }
+    // let startDateWithoutTime = null
+    // if (startDate){
+    //     const startDateSplitted = startDate.split("T");
+    //     startDateWithoutTime = startDateSplitted[0];
+    // }
+    // let endDateWithoutTime = null
+    // if (endDate){
+    //     const endDateSplitted = endDate.split("T");
+    //     endDateWithoutTime = endDateSplitted[0];
+    // }
     console.log([userId, categoryId, startDate, endDate, offset, limit]);
     try {
         client = await pool.connect(); // Espera a abrir conexion a bbdd

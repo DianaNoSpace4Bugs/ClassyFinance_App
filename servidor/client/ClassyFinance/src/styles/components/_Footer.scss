@@ -1,0 +1,10 @@
+@import '../utils/variables.scss';
+
+#navContainer{
+    display: flex;
+    flex-direction: row;
+    background-color: linear-gradient(to right, $ROSA-FUCSIA, $MORADO);
+}
+.nav-bar-item{
+
+}

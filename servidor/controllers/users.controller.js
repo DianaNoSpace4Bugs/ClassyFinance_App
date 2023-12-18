@@ -11,10 +11,16 @@ const modelsUsers = require('../models/modelsUsers'); // Importar el modelo de l
 // GET http://localhost:3000/api/authors?email=hola@gmail.com --> por email
 //lo vamos a engachar a una ruta que si hay mail busca por correo, si no hay mail busca todo. 
 const getUserById = async (req, res) => {
-    let user = await modelsUsers.getUserById(req.query.id);//esto accede a entries.models y llama a esa funcion allí 
-
-
-    res.status(200).json(user); // [] con las entries encontradas
+    try {
+        let user = await modelsUsers.getUserById(req.query.id);//esto accede a entries.models y llama a esa funcion allí 
+        res.status(200).json(user); // [] con las entries encontradas
+    }
+    catch (error) {
+        res.status(500).json({
+            statusCode: 500,
+            errorMessage: "An unexpected error has ocurred."
+        });
+    }
 }
 
 const updateUsersData = async (req, res) => {

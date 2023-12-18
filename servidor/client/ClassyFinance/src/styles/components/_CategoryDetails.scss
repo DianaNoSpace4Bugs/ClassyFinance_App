@@ -3,15 +3,13 @@
 #seccionDetails {
     border: 1px solid white;
     width: 80%;
-    margin: 0 auto;
-    margin-top: 40px;
-    margin-bottom: 40px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     text-align: center;
+    margin: 40px 80px;
 }
 
 #articleCategoria {}
@@ -26,7 +24,14 @@
     padding-left: 8px;
 }
 
-#listaGastos {}
+#listaGastos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    flex-direction: column;
+}
 
 #articleGasto {
     display: flex;
@@ -52,9 +57,9 @@
 
 #articleGasto button img {
     width: 75px;
-    background: linear-gradient(to right, $ROSA-FUCSIA, $MORADO);
+    background: linear-gradient(to right, #F222BB, #B948D9);
     border-radius: 100px;
-    margin-left: 100px;
+    margin-left: -71px;
 }
 
 #articleGasto button img:hover {

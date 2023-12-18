@@ -18,9 +18,9 @@ async function getUserById(id) {
     return new Promise(async (resolve, reject) => {
         try {
             // Petición HTTP
-            const response = await axios.get(`http://localhost:3000/api/user?id=${id}`);
+            const response = await axios.get(`http://localhost:3000/api/users?id=${id}`);
             const json = response;
-            console.log(json);
+            console.log('getUserById: ', json);
             resolve(json.data);
         } catch (error) {
             console.error("Ha ocurrido un error al obtener tu usuario " + id + ": ", error)

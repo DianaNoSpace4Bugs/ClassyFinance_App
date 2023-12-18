@@ -30,7 +30,7 @@
 #formularioExpenses fieldset input {
     padding: 6px 10px;
     font-size: large;
-    font-family: $font;
+    font-family: 'Philosopher', sans-serif;
     text-align: start;
 }
 
@@ -38,13 +38,15 @@
     font-size: large;
     padding: 8px 28px;
     border-radius: 6px;
-    background: linear-gradient(to right, $ROSA-FUCSIA, #fbfbfb);
+    border: 1px solid white;
+    background: linear-gradient(to right, #F222BB, #b948d9);
     margin-bottom: 18px;
     margin-top: -12px;
-    font-family: $font;
+    font-family: 'Philosopher', sans-serif;
+    color: white;
 }
 
 #botonFormularioExpenses:hover {
     scale: 1.05;
-    background: linear-gradient(to left, #F222BB, #fbfbfb)
+    background: linear-gradient(to left, #F222BB, #b948d9)
 }

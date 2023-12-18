@@ -71,11 +71,11 @@ const CategoryDetails = () => {
         {expensesList.length == 0 ? 'No hay ningún gasto.' : expensesList.map(expense => {
           return (
             <article id="articleGasto" key={expense.expense_id}>
-              <h3>{expense.quantity}</h3>
-              <p>{expense.description}</p>
               <button onClick={handleClick}>
                 <img id={expense.expense_id} src="/assets/delete.png" alt="delete imagen" />
               </button>
+              <h3>{expense.quantity}</h3>
+              <p>{expense.description}</p>
             </article>);
         })}
       </ul>

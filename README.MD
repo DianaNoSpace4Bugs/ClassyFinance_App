@@ -4,11 +4,11 @@
 
   <img src="https://cdn.pixabay.com/animation/2023/05/08/06/04/06-04-27-290_512.gif" alt="gif money" width=200><br>
   
-</div>
-
 # Expense Tracker App
 
 This web application is designed to help users categorize their expenses, allowing for better organization of income and desired savings goals.
+</div>
+
 
 ## Overview
 

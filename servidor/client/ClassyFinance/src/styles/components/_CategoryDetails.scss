@@ -1,0 +1,63 @@
+@import '../utils/variables.scss';
+
+#seccionDetails {
+    border: 1px solid white;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+}
+
+#articleCategoria {}
+
+#articleCategoria img {
+    width: 200px;
+    padding-left: 8px;
+}
+
+#articleCategoria h3 {
+    text-align: center;
+    padding-left: 8px;
+}
+
+#listaGastos {}
+
+#articleGasto {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 60vh;
+}
+#articleGasto p{
+    margin-left: 100px;
+    width: 40vh;
+}
+
+#articleGasto h3{
+    width: 10vh;
+}
+
+#articleGasto button {
+    background: transparent;
+    border: none;
+    width: 10vh;
+}
+
+#articleGasto button img {
+    width: 75px;
+    background: linear-gradient(to right, $ROSA-FUCSIA, $MORADO);
+    border-radius: 100px;
+    margin-left: 100px;
+}
+
+#articleGasto button img:hover {
+    scale: 1.05;
+    border: 1px solid white;
+}

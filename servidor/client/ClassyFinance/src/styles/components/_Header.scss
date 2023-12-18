@@ -1,0 +1,21 @@
+@import '../utils/variables.scss';
+
+header{
+    margin-top: 0px;
+    min-height: 15vh;
+}
+#headerContainer{
+    display: flex;
+    background: linear-gradient(to right, $ROSA-FUCSIA, $MORADO);
+    justify-content: center;
+    align-items: center;
+    color: rgb(244, 249, 249);
+}
+#imgHeader{
+    width: 153px;
+    height: 100px;
+}
+#titulo{
+    font-size: xx-large;
+    font-family: $font;
+}

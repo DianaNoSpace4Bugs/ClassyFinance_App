@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { createUser } from '../../../services/usersService';
+import Swal from 'sweetalert2';
+
 
 const InitialForm = () => {
+  const navigate = useNavigate()
   const [formulario, setFormulario] = useState({
     username: '',
     email: '',
@@ -33,9 +37,21 @@ const InitialForm = () => {
     setFormulario(infoUser);
     console.log('Sending infoUser: ', infoUser)
     createUser(infoUser)
-      .then(data => console.log("User register (data): ", data))
+      .then(response => console.log("User register (data): ", response.data))
       .catch(error => alert(error));
     console.log('Formulario enviado!');
+    if (infoUser.username && infoUser.email && infoUser.password && infoUser.money_limit && infoUser.monthlyIncomeQuantity) {
+      navigate('/categorieslist')
+    }
+    else{
+      Swal.fire({
+        title: 'Error',
+        text: 'Required fields are not filled or incorrect',
+        icon: 'error',
+        confirmButtonText: 'Back to the form',
+        showCancelButton: false, // Oculta el botón de Cancelar
+      });
+    }
   }
 
   const handleChange = (e) => {
@@ -47,38 +63,37 @@ const InitialForm = () => {
   };
 
   return (<>
-    <h2>Welcome!</h2>
-    <h3>Please enter your information to access the application</h3>
-    <form onSubmit={handleSubmit}>
+    <h2 id='welcome'>Welcome!</h2>
+    <h3 id='subtitulo'>Please enter your information to access the application</h3>
+    <form id='initialForm' onSubmit={handleSubmit}>
       <fieldset>
         <label htmlFor="username">Username</label>
-        <br />
         <input type="text" name="username" onChange={handleChange}/>
       </fieldset>
       <fieldset>
         <label htmlFor="email">Email</label>
-        <br />
+         
         <input type="email" name="email" onChange={handleChange}/>
       </fieldset>
       <fieldset>
         <label htmlFor="password">Password</label>
-        <br />
+         
         <input type="password" name="password" onChange={handleChange}/>
       </fieldset>
       <fieldset>
         <label htmlFor="moneyLimit">Set a spending limit</label>
-        <br />
+         
         <input type="number" name="moneyLimit" onChange={handleChange}/>
       </fieldset>
       <fieldset>
         <label htmlFor="monthlyIncome">What is your fixed monthly income?</label>
-        <br />
+         
         <input type="number" name="monthlyIncome" onChange={handleChange}/>
       </fieldset>
-      <fieldset>
+      <fieldset id='fieldsetRaro'>
         <h4>If you have any fixed monthly expense in any of the corresponding categories, please enter the amount.</h4>
+         
         <br />
-
         <label htmlFor="category1">Bills</label>
         <br />
         <input type="number" name="category1" onChange={handleChange}/>
@@ -87,13 +102,13 @@ const InitialForm = () => {
         <label htmlFor="category2">Transport</label>
         <br />
         <input type="number" name="category2" onChange={handleChange}/>
+         
         <br />
-
         <label htmlFor="category3">Entertainment</label>
         <br />
         <input type="number" name="category3" onChange={handleChange}/>
+         
         <br />
-
         <label htmlFor="category4">Shopping</label>
         <br />
         <input type="number" name="category4" onChange={handleChange}/>
@@ -105,7 +120,7 @@ const InitialForm = () => {
       </fieldset>
       <br />
 
-      <button type="submit">Access</button>
+      <button id='botonInitialForm' type="submit">Access</button>
     </form>
   </>);
 };

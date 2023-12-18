@@ -28,25 +28,27 @@ const updateUsersData = async (req, res) => {
 
 const createUser = async (req, res) => {
     console.log("createUser is executing...")
-    const newUser = req.body; // {name,surname,email,image}
-    console.log(newUser)
-    if (!newUser.username ||
-        !newUser.email ||
-        !newUser.password ||
-        !newUser.money_limit ||
-        !newUser.monthlyIncomeQuantity) {
-        res.status(400).json({
-            statusCode: 400,
-            errorMessage: "All the fields are required."
-        });
-    }
-    try{
-        const response = await modelsUsers.createUser(newUser);//esto accede a authors.models y llama a esa funcion allí
-        res.status(201).json({
-            "items_created": response,
-            data: newUser
-        });
-    } catch(error){
+    try {
+        const newUser = req.body; // {name,surname,email,image}
+        console.log(newUser)
+        if (!newUser.username ||
+            !newUser.email ||
+            !newUser.password ||
+            !newUser.money_limit ||
+            !newUser.monthlyIncomeQuantity) {
+            res.status(400).json({
+                statusCode: 400,
+                errorMessage: "All the fields are required."
+            });
+        }
+        else {
+            const response = await modelsUsers.createUser(newUser);//esto accede a authors.models y llama a esa funcion allí
+            res.status(201).json({
+                "items_created": response,
+                data: newUser
+            });
+        }
+    } catch (error) {
         res.status(500).json({
             statusCode: 500,
             errorMessage: "An unexpected error has ocurred during user registration."

@@ -1,10 +1,9 @@
 @import '../utils/variables.scss';
 
-#navContainer{
-    display: flex;
-    flex-direction: row;
-    background-color: linear-gradient(to right, $ROSA-FUCSIA, $MORADO);
+footer{
+    margin-bottom: 0px;
+    min-height: 15vh;
 }
-.nav-bar-item{
+// .nav-bar-item{
 
-}
+// }

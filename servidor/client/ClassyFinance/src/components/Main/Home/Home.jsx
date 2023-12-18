@@ -9,8 +9,9 @@ const Home = () => {
   }
 
   return (<>
-      <InitialForm />
-  </>);
+    <InitialForm />
+  </>
+  );
 }
 
 export default Home;

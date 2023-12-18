@@ -9,15 +9,17 @@ import CategoryDetails from "./CategoryDetails/CategoryDetails";
 const Main = () => {
   return (
     <>
-    <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/profile" element={<UserProfile/>} />
-        <Route path="/categorieslist" element={<CategoriesList/>} />
-        <Route path="/addexpense" element={<ExpensesForm/>} />
-        <Route path="/categorydetails" element={<CategoryDetails/>} />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/categorieslist" element={<CategoriesList />} />
+          <Route path="/addexpense" element={<ExpensesForm />} />
+          <Route path="/categorydetails" element={<CategoryDetails />} />
 
-        <Route path="/*" element={<Navigate to={"/"} />} />
-      </Routes>
+          <Route path="/*" element={<Navigate to={"/"} />} />
+        </Routes>
+      </main>
     </>
   );
 };

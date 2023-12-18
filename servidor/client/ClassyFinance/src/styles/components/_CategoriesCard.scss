@@ -1,0 +1,28 @@
+@import '../utils/variables.scss';
+
+#cardContainer {
+    border: 1px solid white;
+    margin-top: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#cardContainer:hover {
+    scale: 1.05;
+    border: 1px solid $ROSA-FUCSIA;
+}
+
+#cardContainer img {
+    width: 242px;
+}
+
+
+#cardContainer h3 {
+    text-decoration: none;
+    color: white;
+    text-decoration: underline;
+    font-family: $font;
+}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createExpense } from '../../services/expensesServices';
 import { getCategories } from '../../services/categoriesServices';
+import Swal from 'sweetalert2';
 
 const ExpensesForm = () => {
 
@@ -30,7 +31,12 @@ const ExpensesForm = () => {
     createExpense(infoExpense)
       .then(data => console.log("Expense (data): ", data))
       .catch(error => alert(error));
-    console.log('Formulario enviado!');
+    Swal.fire({
+      title: 'Your expense has been added successfully!',
+      icon: 'success'
+      // confirmButtonText: 'Aceptar',
+    });
+    // alert('Your expense has been added successfully!');
   }
 
   useEffect(() => {
@@ -43,16 +49,16 @@ const ExpensesForm = () => {
 
   return (
     <>
-      <h2>Insert a new expense</h2>
-      <form onSubmit={handleSubmit}>
+      <h2 id='h2Expenses'>Insert a new expense</h2>
+      <form id='formularioExpenses' onSubmit={handleSubmit}>
         <fieldset>
           <label htmlFor="quantity">Quantity</label>
-          <br />
+            
           <input type="number" name="quantity" />
         </fieldset>
         <fieldset>
           <label htmlFor="description">Description (optional)</label>
-          <br />
+            
           <input type="text" name="description" />
         </fieldset>
         <fieldset>
@@ -61,7 +67,7 @@ const ExpensesForm = () => {
         </fieldset>
         <fieldset>
           <label htmlFor="category">Category</label>
-          <br />
+            
           <select id="category">
             <option value="" disabled>Select an option</option>
             {categories.map((option) => (
@@ -72,7 +78,7 @@ const ExpensesForm = () => {
           </select>
         </fieldset>
         <br />
-        <button>Add expense</button>
+        <button id='botonFormularioExpenses'>Add expense</button>
       </form>
     </>
   );

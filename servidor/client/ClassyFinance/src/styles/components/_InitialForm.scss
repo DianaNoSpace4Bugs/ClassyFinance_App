@@ -1,10 +1,14 @@
 @import '../utils/variables.scss';
 
-#h2Expenses {
+#welcome {
     font-size: larger;
 }
 
-#formularioExpenses {
+#subtitulo {
+    font-size: larger;
+}
+
+#initialForm {
     width: 80%;
     margin: 0 auto;
     border: 1px solid white;
@@ -16,35 +20,50 @@
     padding-top: 14px;
 }
 
-#formularioExpenses fieldset {
+#initialForm fieldset {
     border: none;
     display: flex;
-    flex-direction: row;
+    width: 90vh;
+    margin: 10px;
+    align-items: center;
 }
 
-#formularioExpenses fieldset label {
+#fieldsetRaro{
+    display: flex;
+    flex-direction: column;
+}
+
+#initialForm fieldset label {
     margin-top: 2px;
     margin-right: 15px;
+    width: 35vh;
 }
 
-#formularioExpenses fieldset input {
-    padding: 6px 10px;
+#initialForm fieldset input {
+    // padding: 6px 10px;
     font-size: large;
     font-family: $font;
     text-align: start;
+    width: 46vh;
 }
 
-#botonFormularioExpenses {
+#initialForm fieldset h4 {
+    max-width: 80%;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+#botonInitialForm {
     font-size: large;
     padding: 8px 28px;
     border-radius: 6px;
-    background: linear-gradient(to right, $ROSA-FUCSIA, #fbfbfb);
+    background: linear-gradient(to right, #F222BB, #fbfbfb);
     margin-bottom: 18px;
     margin-top: -12px;
     font-family: $font;
 }
 
-#botonFormularioExpenses:hover {
+#botonInitialForm:hover {
     scale: 1.05;
     background: linear-gradient(to left, #F222BB, #fbfbfb)
 }

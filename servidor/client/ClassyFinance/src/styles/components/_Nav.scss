@@ -1,0 +1,22 @@
+@import '../utils/variables.scss';
+
+#navContainer{
+    display: flex;
+    flex-direction: row;
+    background: linear-gradient(to right, $ROSA-FUCSIA, $MORADO);
+    padding: 19px 33px;
+}
+#navContainer ul{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+}
+.nav-img{
+    width: 108px;
+}
+.nav-img:hover{
+    background-color: $ROSA-FUCSIA;
+    border-radius: 1000px;
+    scale: 1;
+}

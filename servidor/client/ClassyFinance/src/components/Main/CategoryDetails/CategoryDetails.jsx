@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getCategoryById } from "../../services/categoriesServices";
 import { getExpenses, deleteExpense } from "../../services/expensesServices";
+import Swal from 'sweetalert2';
 
 const CategoryDetails = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -35,7 +36,16 @@ const CategoryDetails = () => {
 
   const handleClick = (event) => {
     console.log(event.target.id);
-    const isConfirmed = confirm("Are you sure of deleting this expense?")
+    const isConfirmed = Swal.fire({
+      title: 'Are you sure?',
+      text: 'This action cannot be undone',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirm',
+      cancelButtonText: 'Cancel',
+    })
     if (isConfirmed){
       deleteExpense(event.target.id)
       .then(data => {
@@ -48,23 +58,23 @@ const CategoryDetails = () => {
   }
 
   return (
-    <section>
-      <article>
-        <img src={`/public/assets/categories/${categoryData?.name}.png`}
+    <section id="seccionDetails">
+      <article id="articleCategoria">
+        <img src={`/assets/categories/${categoryData?.name}.png`}
           alt={`Imagen de la categoría ${categoryData?.name}`} />
-        <h1>
+        <h3>
           {categoryData?.name?.toUpperCase()}
-        </h1>
+        </h3>
       </article>
-      <ul>
-        {/* TODO: añadir el resto de datos que me faltan */}
+      <ul id="listaGastos">
+        {/* Falta añadir el resto de datos que me faltan */}
         {expensesList.length == 0 ? 'No hay ningún gasto.' : expensesList.map(expense => {
           return (
-            <article key={expense.expense_id}>
-              <p>{expense.quantity}</p>
+            <article id="articleGasto" key={expense.expense_id}>
+              <h3>{expense.quantity}</h3>
               <p>{expense.description}</p>
               <button onClick={handleClick}>
-                <img id={expense.expense_id} src="/public/assets/delete.png" alt="delete imagen" />
+                <img id={expense.expense_id} src="/assets/delete.png" alt="delete imagen" />
               </button>
             </article>);
         })}

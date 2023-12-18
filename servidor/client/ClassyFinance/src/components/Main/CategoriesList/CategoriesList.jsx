@@ -16,10 +16,10 @@ const CategoriesList = () => {
   }, [])
 
   return (
-    <div>
-      <h2>Categorías:</h2>
-      <ul>
-        {categories.map((category) => (
+    <section id='categoriasContainer'>
+      <h2 id='tituloCategorias'>Categories</h2>
+      <ul id='listaTarjetas'>
+        {categories.map(category => (
           <li key={category.category_id}>
             <Link to={`/categorydetails?categoryId=${category.category_id}`}>
               <CategoryCard name={category.name} />
@@ -27,7 +27,7 @@ const CategoriesList = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 };
 

@@ -7,6 +7,8 @@
 # Expense Tracker App
 
 This web application is designed to help users categorize their expenses, allowing for better organization of income and desired savings goals.
+
+[PPT](https://www.canva.com/design/DAF3XBVAp-c/XQj8f-OmHVV3sYej36Ix1g/edit?utm_content=DAF3XBVAp-c&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 </div>
 
 
